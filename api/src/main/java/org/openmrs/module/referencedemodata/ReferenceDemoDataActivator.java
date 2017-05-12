@@ -255,7 +255,7 @@ public class ReferenceDemoDataActivator extends BaseModuleActivator {
 			}
 		}
 
-		GlobalProperty gp = new GlobalProperty("layout.address.format", "<org.openmrs.layout.address.AddressTemplate>\n" +
+/*		GlobalProperty gp = new GlobalProperty("layout.address.format", "<org.openmrs.layout.address.AddressTemplate>\n" +
 				"     <nameMappings class=\"properties\">\n" +
 				"       <property name=\"postalCode\" value=\"Location.postalCode\"/>\n" +
 				"       <property name=\"address2\" value=\"Location.address2\"/>\n" +
@@ -307,10 +307,11 @@ public class ReferenceDemoDataActivator extends BaseModuleActivator {
 		}
 		
 		as.saveGlobalProperty(gp);
-				
+*/				
 		//Hack to address RA-631 - clear out bogus default regex for patient name validation
 		//and then blanks out the global property if it contains the bogus entry set by platform
 		//TODO this can be removed once the 1.11.3 platform is released with the fix
+		GlobalProperty gp = new GlobalProperty();
 		gp = as.getGlobalPropertyObject(OpenmrsConstants.GLOBAL_PROPERTY_PATIENT_NAME_REGEX);
 		if (gp != null && "^[a-zA-Z \\-]+$".equals(gp.getValue())) {
 			gp.setPropertyValue(null);
